@@ -20,28 +20,50 @@ function filterProduk() {
     .filter((p) => p.nama.toLowerCase().includes(search))
     .forEach((p) => {
       const div = document.createElement('div');
+      div.className = 'produk-box';
       div.innerHTML = `
-      ${p.nama} - Rp ${p.harga}
-      <input type="number" min="1" placeholder="Jumlah" id="jml-${p.id}" />
-      <button onclick="tambahKeNota('${p.id}')">Tambah</button>
-      <hr/>
-    `;
+<div class="produk-boxx">
+  <div class="produk-info">
+    <strong>${p.nama}</strong> - Rp ${p.harga.toLocaleString()}
+  </div>
+  <div class="produk-aksi">
+    <input type="number" min="1" placeholder="Jumlah" id="jml-${p.id}" class="jumlah-input" />
+    <button onclick="tambahKeNota('${p.id}')">Tambah</button>
+  </div>
+</div>
+
+
+      `;
       list.appendChild(div);
     });
 }
 
 function tambahKeNota(id) {
   const produk = semuaProduk.find((p) => p.id === id);
-  const jumlah = parseInt(document.getElementById(`jml-${id}`).value);
-  if (!jumlah) return alert('Jumlah tidak valid');
+  const jumlahInput = document.getElementById(`jml-${id}`);
+  const jumlah = parseInt(jumlahInput.value);
 
-  transaksi.push({
-    nama: produk.nama,
-    harga: produk.harga,
-    jumlah,
-    total: produk.harga * jumlah,
-  });
+  if (!jumlah || jumlah <= 0) {
+    showPopup('⚠️ Jumlah tidak valid');
+    return;
+  }
 
+  // Cek apakah produk sudah ditambahkan
+  const existing = transaksi.find((item) => item.nama === produk.nama);
+  if (existing) {
+    existing.jumlah += jumlah;
+    existing.total = existing.harga * existing.jumlah;
+  } else {
+    transaksi.push({
+      nama: produk.nama,
+      harga: produk.harga,
+      jumlah,
+      total: produk.harga * jumlah,
+    });
+  }
+
+  jumlahInput.value = '';
+  showPopup('✅ Produk ditambahkan');
   renderTotal();
 }
 
@@ -56,9 +78,14 @@ function tampilkanNota() {
   modal.style.display = 'block';
   isi.innerHTML = '';
 
+  if (transaksi.length === 0) {
+    isi.innerHTML = '<p>Belum ada produk ditambahkan.</p>';
+    return;
+  }
+
   transaksi.forEach((t) => {
     const p = document.createElement('p');
-    p.textContent = `${t.nama} - ${t.jumlah} x Rp ${t.harga} = Rp ${t.total}`;
+    p.textContent = `${t.nama} - ${t.jumlah} x Rp ${t.harga.toLocaleString()} = Rp ${t.total.toLocaleString()}`;
     isi.appendChild(p);
   });
 
@@ -74,14 +101,28 @@ function tutupModal() {
 }
 
 async function simpanTransaksi() {
+  if (transaksi.length === 0) {
+    showPopup('⚠️ Belum ada transaksi');
+    return;
+  }
+
   await db.collection('transaksi').add({
     transaksi,
     waktu: new Date(),
     total: transaksi.reduce((acc, t) => acc + t.total, 0),
   });
 
-  alert('Transaksi disimpan!');
+  showPopup('✅ Transaksi disimpan!');
   window.print();
+}
+
+function showPopup(message) {
+  const popup = document.getElementById('notifPopup');
+  popup.textContent = message;
+  popup.style.display = 'block';
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 2000);
 }
 
 loadProduk();

@@ -172,7 +172,7 @@ th {
   position: fixed;
   z-index: 100;
   left: 50%;
-  top: 20%;
+  top: 10%;
   transform: translate(-50%, -50%);
   background-color: #00235e;
   color: white;
@@ -180,4 +180,44 @@ th {
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   font-size: 16px;
+}
+
+.produk-boxx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.produk-box {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.produk-info {
+  flex: 1;
+  font-size: 15px;
+}
+
+.produk-aksi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jumlah-input {
+  width: 70px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  text-align: center;
 }
