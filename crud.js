@@ -68,15 +68,18 @@ async function tampilkanProduk() {
 
   try {
     const snapshot = await db.collection('produk').get();
+    let no = 1;
+
     snapshot.forEach((doc) => {
       const data = doc.data();
       const namaSafe = data.nama.replace(/'/g, "\\'").replace(/"/g, '&quot;');
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
+        <td style="text-align: center">${no++}</td>
         <td>${data.nama}</td>
-        <td>Rp ${data.harga}</td>
-        <td>
+        <td style="text-align: center">Rp ${data.harga}</td>
+        <td style="text-align: center">
           <button class="edit-btn" onclick="mulaiEdit('${doc.id}', '${namaSafe}', ${data.harga})">Edit</button>
           <button class="delete-btn" onclick="hapusProduk('${doc.id}')">Hapus</button>
         </td>

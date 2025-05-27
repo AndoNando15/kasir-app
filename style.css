@@ -120,48 +120,66 @@ th {
 }
 
 @media print {
+  /* Sembunyikan elemen interaktif */
   button,
-  .top-right {
-    display: none !important;
-  }
+  .top-right,
+  .popup,
+  .no-print,
   input,
   #search,
   #produk-list,
   .container > *:not(#notaIsi) {
     display: none !important;
   }
-  .modal-content {
-    box-shadow: none;
-    border: none;
-  }
-  #notaIsi {
-    display: block;
-    font-size: 14pt;
-  }
-}
-
-@media print {
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    height: auto !important;
-    overflow: visible !important;
-  }
+  /* Atur kontainer nota agar bersih */
   .modal,
   .modal-content,
   #notaIsi {
+    display: block;
     width: 100% !important;
     max-width: none !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 0 20px !important;
-    box-shadow: none !important;
     border: none !important;
+    box-shadow: none !important;
     page-break-inside: avoid;
+    font-size: 14pt;
+  }
+  /* Optimasi tampilan halaman cetak */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: auto !important;
+    overflow: visible !important;
+    font-family: Arial, sans-serif;
+    color: #000;
+    background: white;
   }
   @page {
     margin: 10mm;
+  }
+  /* Cetak tabel nota tetap rapi */
+  .nota-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13pt;
+  }
+  .nota-table th,
+  .nota-table td {
+    padding: 10px;
+    border: 1px solid #444;
+    text-align: center;
+  }
+  .nota-table th {
+    background-color: #e0e0e0 !important;
+    color: #000 !important;
+  }
+  .nota-table td:nth-child(2) {
+    text-align: left;
+  }
+  .nota-table tr:last-child td {
+    border-bottom: 2px solid #000;
   }
 }
 
@@ -220,4 +238,39 @@ th {
   border-radius: 4px;
   border: 1px solid #ccc;
   text-align: center;
+}
+
+.nota-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.nota-table th,
+.nota-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.nota-table th {
+  background-color: #00235e;
+  color: white;
+}
+
+.nota-table th,
+.nota-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  /* rata tengah untuk semua */
+}
+
+.nota-table td:first-child {
+  width: 40px;
+}
+
+.nota-table td:nth-child(2) {
+  text-align: left;
+  /* Produk tetap rata kiri */
 }

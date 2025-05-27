@@ -83,17 +83,52 @@ function tampilkanNota() {
     return;
   }
 
-  transaksi.forEach((t) => {
-    const p = document.createElement('p');
-    p.textContent = `${t.nama} - ${t.jumlah} x Rp ${t.harga.toLocaleString()} = Rp ${t.total.toLocaleString()}`;
-    isi.appendChild(p);
-  });
+  // Buat tabel dengan No + Batal
+  const table = document.createElement('table');
+  table.className = 'nota-table';
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Produk</th>
+        <th>Harga</th>
+        <th>Jumlah</th>
+        <th>Total</th>
+        <th class="no-print">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${transaksi
+        .map(
+          (t, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${t.nama}</td>
+          <td>Rp ${t.harga.toLocaleString()}</td>
+          <td>${t.jumlah}</td>
+          <td>Rp ${t.total.toLocaleString()}</td>
+          <td><button class="delete-btn" onclick="hapusDariNota(${i})">Batal</button></td>
+        </tr>
+      `
+        )
+        .join('')}
+    </tbody>
+  `;
+
+  isi.appendChild(table);
 
   const total = transaksi.reduce((acc, t) => acc + t.total, 0);
   const totalP = document.createElement('p');
   totalP.style.fontWeight = 'bold';
+  totalP.style.marginTop = '10px';
   totalP.textContent = `Total: Rp ${total.toLocaleString()}`;
   isi.appendChild(totalP);
+}
+function hapusDariNota(index) {
+  transaksi.splice(index, 1);
+  showPopup('❌ Item dibatalkan');
+  tampilkanNota();
+  renderTotal();
 }
 
 function tutupModal() {
@@ -113,7 +148,11 @@ async function simpanTransaksi() {
   });
 
   showPopup('✅ Transaksi disimpan!');
-  window.print();
+
+  // Tunggu 2 detik agar popup hilang sebelum print
+  setTimeout(() => {
+    window.print();
+  }, 2000);
 }
 
 function showPopup(message) {
