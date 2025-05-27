@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Riwayat Transaksi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Riwayat Transaksi</h1>
+      <input type="date" id="filterTanggal" onchange="filterTransaksi()" />
+      <ul id="daftar-transaksi"></ul>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="firebase.js"></script>
+    <script src="histori.js"></script>
+  </body>
+</html>

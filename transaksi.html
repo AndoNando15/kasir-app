@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transaksi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="top-right">
+        <button onclick="window.location.href='index.html'">← Ke Data Barang</button>
+      </div>
+      <h1>Transaksi</h1>
+      <input type="text" id="search" placeholder="Cari Produk..." onkeyup="filterProduk()" />
+      <div id="produk-list"></div>
+      <div class="total" id="totalNota">Total: Rp 0</div>
+      <button onclick="tampilkanNota()">🧾 Lihat Nota</button>
+    </div>
+
+    <!-- MODAL NOTA -->
+    <div class="modal" id="notaModal">
+      <div class="modal-content">
+        <h2>Nota Transaksi</h2>
+        <div id="notaIsi"></div>
+        <button onclick="simpanTransaksi()">🖨️ Simpan & Cetak</button>
+        <button onclick="tutupModal()">Tutup</button>
+      </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="firebase.js"></script>
+    <script src="transaksi.js"></script>
+  </body>
+</html>

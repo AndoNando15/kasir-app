@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manajemen Produk</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="top-right">
+        <button onclick="window.location.href='transaksi.html'">🛒 Ke Transaksi</button>
+      </div>
+      <h1>Manajemen Produk</h1>
+      <input type="text" id="nama" placeholder="Nama Produk" />
+      <input type="number" id="harga" placeholder="Harga" />
+      <button id="aksi-btn" onclick="tambahProduk()">Tambah Produk</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="produk-tbody"></tbody>
+      </table>
+    </div>
+    <div class="popup" id="notifPopup"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="firebase.js"></script>
+    <script src="crud.js"></script>
+  </body>
+</html>
