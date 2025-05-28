@@ -1,0 +1,154 @@
+/* General body and container styles */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+h1 {
+  color: #00235e;
+  margin-bottom: 20px;
+}
+
+/* Top-left button styling */
+
+.top-left {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.top-left button {
+  background-color: #00235e;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.top-left button:hover {
+  background-color: #001b4a;
+}
+
+/* Riwayat transaction list */
+
+#riwayat-list {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #00235e;
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+  /* Add alternating row colors */
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+  /* Highlight row on hover */
+}
+
+/* Styling for the 'no data' message */
+
+#riwayat-tbody {
+  text-align: center;
+}
+
+/* Button styling */
+
+button {
+  background-color: #00235e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #001b4a;
+}
+
+/* Modal styling */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 12px;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  background-color: #00235e;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+}

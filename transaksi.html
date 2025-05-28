@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Transaksi</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="transaksi.css" />
   </head>
 
   <body>
     <div class="container">
-      <div class="top-right">
-        <button onclick="window.location.href='index.html'">← Ke Data Barang</button>
+      <div style="display: flex; justify-content: space-between">
+        <button class="top-left" onclick="window.location.href='index.html'">← Ke Data Barang</button>
+        <button class="top-right" onclick="window.location.href='riwayat.html'">Riwayat Transaksi</button>
       </div>
+
       <h1>Transaksi</h1>
       <input type="text" id="search" placeholder="Cari Produk..." style="margin-bottom: 20px" onkeyup="filterProduk()" />
       <div id="produk-list"></div>
@@ -18,7 +20,6 @@
       <button onclick="tampilkanNota()">🧾 Lihat Nota</button>
     </div>
 
-    <!-- MODAL NOTA -->
     <div class="modal" id="notaModal">
       <div class="modal-content">
         <h2>Nota Transaksi</h2>
@@ -27,12 +28,15 @@
         <button onclick="tutupModal()">Tutup</button>
       </div>
     </div>
+
     <div class="popup" id="notifPopup"></div>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-    <script src="firebase.js"></script>
-    <script src="transaksi.js"></script>
+    <!-- Include Firebase SDK (v8.x.x) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- Firebase and main app scripts -->
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="transaksi.js"></script>
   </body>
 </html>

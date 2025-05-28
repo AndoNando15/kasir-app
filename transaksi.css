@@ -3,61 +3,20 @@ body {
   background-color: #f0f2f5;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  margin: 0;
+  align-items: start;
+  padding: 20px;
 }
 
 .container {
-  background-color: #f0f2f5;
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  width: 90%;
-  max-width: 1200px;
-  /* Maximum width for the container */
-  display: flex;
-  justify-content: space-between;
-  /* Ensure the left and right sections are side by side */
-  gap: 20px;
-  /* Space between the two sections */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  text-align: center;
 }
 
-.manajemen-stok-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 48%;
-  /* Set the width of the left section */
-  height: auto;
-  /* Auto height based on content */
-  max-height: 215px;
-  /* Limit the height of the Manajemen Produk container */
-  overflow: hidden;
-  /* Prevent vertical overflow */
-}
-
-.produk-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 48%;
-  /* Set the width of the right section */
-  max-height: 85vh;
-  /* Set max height to allow scrolling */
-  display: flex;
-  flex-direction: column;
-}
-
-.produk-section {
-  overflow-y: auto;
-  flex-grow: 1;
-  /* Allow the table section to grow and scroll */
-}
-
-h1,
-h2 {
+h1 {
   color: #00235e;
   margin-bottom: 20px;
 }
@@ -97,37 +56,7 @@ button:hover {
   background-color: darkred;
 }
 
-.edit-btn {
-  background: orange;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-.edit-btn:hover {
-  background-color: darkorange;
-}
-
-/* Section Produk */
-
-.produk-section {
-  border-top: 2px solid #ccc;
-}
-
-.produk-section h2 {
-  color: #00235e;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  padding-top: 20px;
-  z-index: 1;
-  /* Keep the heading on top of the table */
-}
-
-/* Tabel Produk */
+/* TABEL */
 
 table {
   width: 100%;
@@ -138,7 +67,7 @@ table {
 th,
 td {
   padding: 10px;
-  text-align: center;
+  text-align: left;
   border-bottom: 1px solid #ccc;
 }
 
@@ -176,10 +105,31 @@ th {
   margin-bottom: 10px;
 }
 
+.top-left {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.edit-btn {
+  background: orange;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: darkorange;
+}
+
 @media print {
   /* Sembunyikan elemen interaktif */
   button,
   .top-right,
+  .top-left,
   .popup,
   .no-print,
   input,
@@ -330,47 +280,4 @@ th {
 .nota-table td:nth-child(2) {
   text-align: left;
   /* Produk tetap rata kiri */
-}
-
-/* Section Produk */
-
-.produk-section {
-  border-top: 2px solid #ccc;
-}
-
-.produk-section h2 {
-  color: #00235e;
-}
-
-/* Tabel Produk */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-}
-
-th {
-  background-color: #00235e;
-  color: white;
-}
-
-button {
-  background-color: #00235e;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #001b4a;
 }

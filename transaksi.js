@@ -1,45 +1,49 @@
+import { db } from './firebase.js'; // Import db from firebase.js
+
 let semuaProduk = [];
 let transaksi = [];
 
+// Load products from Firestore
 async function loadProduk() {
   const snapshot = await db.collection('produk').get();
   semuaProduk = snapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   }));
+  filterProduk(); // After products are loaded, filter them
 }
 
+// Filter products based on the search input
 function filterProduk() {
   const search = document.getElementById('search').value.toLowerCase();
   const list = document.getElementById('produk-list');
-  list.innerHTML = '';
+  list.innerHTML = ''; // Clear existing list
 
-  if (!search) return;
+  if (!search) return; // If there's no search text, return
 
   semuaProduk
-    .filter((p) => p.nama.toLowerCase().includes(search))
+    .filter((p) => p.nama.toLowerCase().includes(search)) // Filter products
     .forEach((p) => {
       const div = document.createElement('div');
       div.className = 'produk-box';
       div.innerHTML = `
-<div class="produk-boxx">
-  <div class="produk-info">
-    <strong>${p.nama}</strong> - Rp ${p.harga.toLocaleString()}
-  </div>
-  <div class="produk-aksi">
-    <input type="number" min="1" placeholder="Jumlah" id="jml-${p.id}" class="jumlah-input" />
-    <button onclick="tambahKeNota('${p.id}')">Tambah</button>
-  </div>
-</div>
-
-
+        <div class="produk-boxx">
+          <div class="produk-info">
+            <strong>${p.nama}</strong> - Rp ${p.harga.toLocaleString()}
+          </div>
+          <div class="produk-aksi">
+            <input type="number" min="1" placeholder="Jumlah" id="jml-${p.id}" class="jumlah-input" />
+            <button onclick="tambahKeNota('${p.id}')">Tambah</button>
+          </div>
+        </div>
       `;
-      list.appendChild(div);
+      list.appendChild(div); // Add filtered products to the list
     });
 }
 
+// Add product to the transaction list
 function tambahKeNota(id) {
-  const produk = semuaProduk.find((p) => p.id === id);
+  const produk = semuaProduk.find((p) => p.id === id); // Find selected product
   const jumlahInput = document.getElementById(`jml-${id}`);
   const jumlah = parseInt(jumlahInput.value);
 
@@ -48,7 +52,6 @@ function tambahKeNota(id) {
     return;
   }
 
-  // Cek apakah produk sudah ditambahkan
   const existing = transaksi.find((item) => item.nama === produk.nama);
   if (existing) {
     existing.jumlah += jumlah;
@@ -62,16 +65,18 @@ function tambahKeNota(id) {
     });
   }
 
-  jumlahInput.value = '';
+  jumlahInput.value = ''; // Clear the quantity input after adding
   showPopup('✅ Produk ditambahkan');
   renderTotal();
 }
 
+// Render total amount of the transaction
 function renderTotal() {
   const total = transaksi.reduce((acc, t) => acc + t.total, 0);
   document.getElementById('totalNota').textContent = `Total: Rp ${total.toLocaleString()}`;
 }
 
+// Display the transaction receipt in a modal
 function tampilkanNota() {
   const modal = document.getElementById('notaModal');
   const isi = document.getElementById('notaIsi');
@@ -83,7 +88,6 @@ function tampilkanNota() {
     return;
   }
 
-  // Buat tabel dengan No + Batal
   const table = document.createElement('table');
   table.className = 'nota-table';
   table.innerHTML = `
@@ -114,7 +118,6 @@ function tampilkanNota() {
         .join('')}
     </tbody>
   `;
-
   isi.appendChild(table);
 
   const total = transaksi.reduce((acc, t) => acc + t.total, 0);
@@ -124,6 +127,8 @@ function tampilkanNota() {
   totalP.textContent = `Total: Rp ${total.toLocaleString()}`;
   isi.appendChild(totalP);
 }
+
+// Remove an item from the transaction list
 function hapusDariNota(index) {
   transaksi.splice(index, 1);
   showPopup('❌ Item dibatalkan');
@@ -131,10 +136,12 @@ function hapusDariNota(index) {
   renderTotal();
 }
 
+// Close the modal
 function tutupModal() {
   document.getElementById('notaModal').style.display = 'none';
 }
 
+// Save the transaction to Firestore
 async function simpanTransaksi() {
   if (transaksi.length === 0) {
     showPopup('⚠️ Belum ada transaksi');
@@ -149,12 +156,12 @@ async function simpanTransaksi() {
 
   showPopup('✅ Transaksi disimpan!');
 
-  // Tunggu 2 detik agar popup hilang sebelum print
   setTimeout(() => {
-    window.print();
+    window.print(); // Print the receipt
   }, 2000);
 }
 
+// Show a notification popup
 function showPopup(message) {
   const popup = document.getElementById('notifPopup');
   popup.textContent = message;
@@ -164,4 +171,8 @@ function showPopup(message) {
   }, 2000);
 }
 
+// Initialize products when the page loads
 loadProduk();
+
+// Make filterProduk global
+window.filterProduk = filterProduk;

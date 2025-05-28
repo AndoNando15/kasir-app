@@ -1,4 +1,5 @@
 // firebase.js
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBEhNtFQVPRn6qYs-vuCgVv0SuMQlWalOQ',
   authDomain: 'kasir-app-154ae.firebaseapp.com',
@@ -9,5 +10,11 @@ const firebaseConfig = {
   measurementId: 'G-FEP983FGMJ',
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// Initialize Firestore
 const db = firebase.firestore();
+
+// Export db to be used in other files
+export { db };

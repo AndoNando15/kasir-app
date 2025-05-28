@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Riwayat Transaksi</title>
+    <link rel="stylesheet" href="riwayat.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="top-left">
+        <button onclick="window.location.href='transaksi.html'">← Ke Transaksi</button>
+      </div>
+      <h1>Riwayat Transaksi</h1>
+      <div class="produk-section">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Total</th>
+              <th>Waktu</th>
+            </tr>
+          </thead>
+          <tbody id="riwayat-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <!-- Firebase Script -->
+    <script type="module" src="riwayat.js"></script>
+    <!-- Riwayat Transaksi Script -->
+  </body>
+</html>

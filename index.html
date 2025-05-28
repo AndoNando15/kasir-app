@@ -8,32 +8,43 @@
 
   <body>
     <div class="container">
-      <div class="top-right">
-        <button onclick="window.location.href='transaksi.html'">🛒 Ke Transaksi</button>
+      <!-- Manajemen Produk Section -->
+      <div class="manajemen-stok-container">
+        <h1>Manajemen Produk</h1>
+        <input type="text" id="nama" placeholder="Nama Produk" />
+        <input type="number" id="harga" placeholder="Harga" />
+        <button id="aksi-btn" onclick="tambahProduk()">Tambah Produk</button>
       </div>
-      <h1>Manajemen Produk</h1>
-      <input type="text" id="nama" placeholder="Nama Produk" />
-      <input type="number" id="harga" placeholder="Harga" />
-      <button id="aksi-btn" onclick="tambahProduk()">Tambah Produk</button>
 
-      <table>
-        <thead>
-          <tr>
-            <th style="text-align: center">No</th>
-            <th style="text-align: center">Nama</th>
-            <th style="text-align: center">Harga</th>
-            <th style="text-align: center">Aksi</th>
-          </tr>
-        </thead>
-
-        <tbody id="produk-tbody"></tbody>
-      </table>
+      <!-- Daftar Produk Section -->
+      <div class="produk-container">
+        <div class="top-right">
+          <button onclick="window.location.href='transaksi.html'">🛒 Ke Transaksi</button>
+        </div>
+        <h1>Daftar Produk</h1>
+        <div class="produk-section">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="produk-tbody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
     <div class="popup" id="notifPopup"></div>
 
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-    <script src="firebase.js"></script>
-    <script src="crud.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <!-- Firebase Script -->
+    <script type="module" src="crud.js"></script>
+    <!-- Manajemen Produk Script -->
   </body>
 </html>
