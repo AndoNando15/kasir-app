@@ -90,3 +90,9 @@ async function tampilkanProduk() {
 }
 
 tampilkanProduk(); // Load products when the page is loaded
+
+// Expose all required functions to the global scope
+window.tambahProduk = tambahProduk;
+window.mulaiEdit = mulaiEdit;
+window.hapusProduk = hapusProduk;
+window.tampilkanProduk = tampilkanProduk;
