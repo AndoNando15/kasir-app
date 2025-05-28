@@ -174,5 +174,10 @@ function showPopup(message) {
 // Initialize products when the page loads
 loadProduk();
 
-// Make filterProduk global
+// Make filterProduk, tambahKeNota, tampilkanNota, hapusDariNota, simpanTransaksi, and tutupModal global
 window.filterProduk = filterProduk;
+window.tambahKeNota = tambahKeNota;
+window.tampilkanNota = tampilkanNota;
+window.hapusDariNota = hapusDariNota;
+window.simpanTransaksi = simpanTransaksi;
+window.tutupModal = tutupModal;
