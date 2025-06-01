@@ -5,7 +5,9 @@ body {
   background-color: #f0f2f5;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  /* Changed to center content vertically */
+  /* Ensure body takes full height */
   margin: 0;
   padding: 20px;
 }
@@ -64,6 +66,14 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  th:nth-child(1),
+  td:nth-child(1),
+  th:nth-child(3),
+  td:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4) {
+    text-align: center;
+  }
 }
 
 th,
@@ -97,6 +107,8 @@ tr:hover {
 
 #riwayat-tbody {
   text-align: center;
+  font-style: italic;
+  color: #888;
 }
 
 /* Button styling */
@@ -136,7 +148,46 @@ button:hover {
   width: 80%;
   max-width: 500px;
   border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+.modal-content h2 {
+  color: #00235e;
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.modal-content th,
+.modal-content td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.modal-content th {
+  background-color: #00235e;
+  color: white;
+}
+
+.modal-content button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.modal-content button:hover {
+  background-color: #45a049;
+}
+
+/* Popup notifikasi */
 
 .popup {
   display: none;
@@ -151,4 +202,17 @@ button:hover {
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   font-size: 16px;
+}
+
+/* Make the modal full-width on small screens */
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
+  .modal-content {
+    width: 90%;
+    padding: 10px;
+  }
 }

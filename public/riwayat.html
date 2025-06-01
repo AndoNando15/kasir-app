@@ -17,11 +17,9 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Nama</th>
-              <th>Harga</th>
-              <th>Jumlah</th>
+              <th>Nama Produk</th>
               <th>Total</th>
-              <th>Waktu</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody id="riwayat-tbody"></tbody>
@@ -29,11 +27,22 @@
       </div>
     </div>
 
+    <!-- Modal for transaction details -->
+    <div id="detailModal" class="modal">
+      <div class="modal-content">
+        <!-- <h2>Detail Transaksi</h2> -->
+        <table class="nota-table">
+          <tbody id="modalDetails">
+            <!-- Transaction details will be inserted here -->
+          </tbody>
+        </table>
+        <!-- <button onclick="closeModal()">Tutup</button> -->
+      </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
     <script type="module" src="firebase.js"></script>
-    <!-- Firebase Script -->
     <script type="module" src="riwayat.js"></script>
-    <!-- Riwayat Transaksi Script -->
   </body>
 </html>
